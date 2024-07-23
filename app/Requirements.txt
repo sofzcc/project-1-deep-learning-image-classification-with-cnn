@@ -1,7 +1,0 @@
-Flask
-requests
-pillow==8.2.0
-numpy
-scikit-learn
-pandas
-tensorflow

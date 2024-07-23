@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href='static/css/styles.css'>
+    <title>Image Classifier</title>
+</head>
+<body>
+    <h2 style='font-family: Arial, sans-serif';>Images Classifier</h2>
+
+    <div class="text-block">
+        <p>This image classifier allows you to upload an image and get a prediction of what the image represents. 
+        It supports images in .png, .jpg, and .jpeg formats.<br/><br/>
+        The model is trained on various classes to provide accurate predictions.<br/><br/>Simply upload an image file, click on the 'Predict!' button, and wait for the result. </p>
+    </div>
+
+    <form action="/predict" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept="image/*" required>
+        <button type="submit">Upload and Predict</button>
+    </form>
+    {% if class_names %}
+        <h2>Class Names:</h2>
+        <ul>
+            {% for class_name in class_names %}
+                <li>{{ class_name }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</body>
+</html>

@@ -1,24 +1,24 @@
-# Use the official TensorFlow Serving image as the base image
-FROM tensorflow/serving:latest
+# Use your existing Docker image as the base image
+FROM my_model:latest
 
-# Update the package list and install Python3 and pip3
+# Install Python3 and pip3 if not already present
 RUN apt-get update && \
     apt-get install -y python3 python3-pip
 
 # Copy the requirements.txt file and install Python dependencies
-COPY requirements.txt /app/requirements.txt
-RUN pip3 install -r /app/requirements.txt
+COPY requirements.txt /requirements.txt
+RUN pip3 install -r /requirements.txt
 
-# Copy the model to the model directory
+# Copy the model to the model directory if not already present in my_model:latest
 COPY model /models/model/1 
 
 # Copy Flask app files
-COPY app.py /app/app.py
-COPY templates /app/templates
+COPY app.py /app.py
+COPY templates /templates
 
 # Copy the startup script
-COPY start.sh /app/start.sh
-RUN chmod +x /app/start.sh
+COPY start.sh /start.sh
+RUN chmod +x /start.sh
 
 # Set environment variables
 ENV MODEL_NAME=model
@@ -30,4 +30,4 @@ EXPOSE 8501
 EXPOSE 5000
 
 # Use CMD to run the startup script
-CMD ["sh", "/app/start.sh"]
+CMD ["sh", "/start.sh"]

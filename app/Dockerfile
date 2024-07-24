@@ -19,7 +19,7 @@ COPY app/static /static
 COPY app/uploads /uploads
 
 # Copy the startup script
-COPY app/start.sh /start.sh
+COPY start.sh /start.sh
 RUN chmod +x /start.sh
 
 # Set environment variables

@@ -9,7 +9,7 @@ RUN apt-get update && \
 COPY app/requirements.txt /requirements.txt
 RUN pip3 install -r /requirements.txt
 
-# Copy the model to the model directory if not already present in my_model:latest
+# Copy the model to the model directory
 COPY app/model /models/model/1 
 
 # Copy Flask app files

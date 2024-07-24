@@ -12,7 +12,7 @@ COPY requirements.txt /app/requirements.txt
 RUN pip3 install -r /app/requirements.txt
 
 # Copy the saved model to the serving directory
-COPY /final_cnn_model /models/model/1
+COPY /model /models/model/1
 
 # Copy Flask app files
 COPY app.py /app/app.py

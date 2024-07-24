@@ -30,3 +30,6 @@ EXPOSE 8501
 
 # Expose the Flask app port (if needed)
 EXPOSE 5000
+
+# Use CMD to run the startup script
+CMD ["sh", "/start.sh"]

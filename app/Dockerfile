@@ -10,7 +10,7 @@ COPY /requirements.txt /requirements.txt
 RUN pip3 install -r /requirements.txt
 
 # Copy the model to the model directory
-COPY /model /models/model
+COPY /model /models/model/1
 
 # Copy Flask app files
 COPY /app.py /app.py

@@ -1,19 +1,16 @@
 # Use the official TensorFlow Serving image as the base image
 FROM tensorflow/serving:latest
 
+# Update the package list and install Python3 and pip3
+RUN apt-get update && \
+    apt-get install -y python3 python3-pip
 
-# Install necessary packages
-RUN apt-get update && apt-get install -y \
-    python3-pip \
-    python3-dev \
-    && apt-get clean
-
-# Install Flask and other dependencies
+# Copy the requirements.txt file and install Python dependencies
 COPY requirements.txt /requirements.txt
 RUN pip3 install -r /requirements.txt
 
 # Copy the model to the model directory
-COPY /model /models/model/1
+COPY model /models/model/1 
 
 # Copy Flask app files
 COPY app.py /app.py
@@ -29,5 +26,8 @@ ENV MODEL_NAME=model
 # Expose the default port TensorFlow Serving uses
 EXPOSE 8501
 
-# Run TensorFlow Serving
-ENTRYPOINT ["tensorflow_model_server", "--rest_api_port=8501", "--model_name=model", "--model_base_path=/models/model"]
+# Expose the Flask app port (if needed)
+EXPOSE 5000
+
+# Use CMD to run the startup script
+CMD ["sh", "/start.sh"]

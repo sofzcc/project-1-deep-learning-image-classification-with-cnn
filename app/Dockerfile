@@ -6,17 +6,17 @@ RUN apt-get update && \
     apt-get install -y python3 python3-pip
 
 # Copy the requirements.txt file and install Python dependencies
-COPY app/requirements.txt /requirements.txt
+COPY requirements.txt /requirements.txt
 RUN pip3 install -r /requirements.txt
 
 # Copy the model to the model directory
-COPY app/model /models/model/1 
+COPY model /models/model/1 
 
 # Copy Flask app files
-COPY app/app.py /app.py
-COPY app/templates /templates
-COPY app/static /static
-COPY app/uploads /uploads
+COPY app.py /app.py
+COPY templates /templates
+COPY static /static
+COPY uploads /uploads
 
 # Copy the startup script
 COPY start.sh /start.sh

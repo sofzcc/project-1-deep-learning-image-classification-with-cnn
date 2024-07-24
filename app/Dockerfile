@@ -1,5 +1,5 @@
-# Use your existing Docker image as the base image
-FROM my_model:latest
+# Use the official TensorFlow Serving image as the base image
+FROM tensorflow/serving:latest
 
 # Install Python3 and pip3 if not already present
 RUN apt-get update && \
